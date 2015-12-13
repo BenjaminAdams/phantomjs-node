@@ -42,6 +42,11 @@ wrap = (ph) ->
       page._evaluate = page.evaluate
       page.evaluate = (fn, cb, args...) ->
         page._evaluate.apply(page, [fn.toString(), cb].concat(args))
+      page._evaluate = page.evaluate
+
+      page._evaluateJavaScript = page.evaluateJavaScript
+      page.evaluateJavaScript = (fn, cb, args...) ->
+        page._evaluateJavaScript.apply(page, [fn.toString(), cb].concat(args))  
       page._onResourceRequested = page.onResourceRequested
       # can apply extra args which will be passed to phantomjs
       # onResourceRequested scope
